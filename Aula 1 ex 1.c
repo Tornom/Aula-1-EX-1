@@ -25,7 +25,7 @@ int main()
 
             }
 
-    Sleep(.001);
+    Sleep(1000);
 
 
     }
