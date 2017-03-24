@@ -18,6 +18,7 @@ int main()
                 if (min == 59){
                     hor++;
                     min=0;
+                    seg=0;
                     if (hor == 23){
                         seg=min=hor=0;
                     }
@@ -25,7 +26,7 @@ int main()
 
             }
 
-    Sleep(1000);
+    Sleep(300);
 
 
     }
