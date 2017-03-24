@@ -15,7 +15,7 @@ int main()
             if (seg == 59){
                 min++;
                 seg=-1;
-                if (min == 60){
+                if (min == 59){
                     hor++;
                     min=0;
                     if (hor == 23){
