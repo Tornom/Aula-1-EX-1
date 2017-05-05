@@ -2,9 +2,7 @@
 #include <stdlib.h>
 #include <windows.h>
 #include <string.h>
-
 COORD coord ={0 , 0};
-int s1,s2,m1,m2,asc;
 
 void gotoxy (int x, int y);
 
@@ -15,6 +13,20 @@ void leitura();
 void ia();
 
 void movemotor();
+
+ struct sensor{
+ int s1;
+ int s2;
+ };
+
+ struct sensor S;
+
+ struct motor {
+ int m1;
+ int m2;
+ };
+
+ struct motor M ;
                                         /* MAIN */
 /*------------------------------------------------------------------------------------*/
 int main()
@@ -25,14 +37,10 @@ int main()
     ia();
     movemotor();
     sleep(1);
-  
   }
     return 0;
 }
-
-
 /* outras funções */
-
 
 void gotoxy (int x, int y)
 {
@@ -41,13 +49,12 @@ coord.Y=y;
 SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),coord);
 }
 
-
 void ini(){
 printf("COMANDOS : sensor esquerdo = 1 / sensor direito= 2 / os dois sensores = 3 / \n  nenhum sensor = 4");
 }
 
 void movemotor(){
-    if(m1==1){
+    if(M.m1==1){
         gotoxy(0,6);
         printf("move motor 1\r");
     }
@@ -55,7 +62,7 @@ void movemotor(){
         gotoxy(0,6);
         printf("para motor 1\r");
     }
-    if (m2==1){
+    if (M.m2==1){
         gotoxy(0,8);
         printf("move motor 2\r");
     }
@@ -65,45 +72,43 @@ void movemotor(){
     }
 }
 
-
-
-
 void ia(){
-    if (s1==0 && s2==0){
-        m1=1;
-        m2=1;
+    if (S.s1==0 && S.s2==0){
+        M.m1=1;
+        M.m2=1;
 
     }
-        else if(s1==1 && s2==0){
-        m1=1;
-        m2=0;
+        else if(S.s1==1 && S.s2==0){
+        M.m1=1;
+        M.m2=0;
     }
-            else if(s1==0 && s2 ==1){
-                m1=0;
-                m2=1;
+            else if(S.s1==0 && S.s2 ==1){
+                M.m1=0;
+                M.m2=1;
             }
-                else if (s1==1 && s2 ==1){
-                    m1=1;
-                    m2=0;
+                else if (S.s1==1 && S.s2 ==1){
+                    M.m1=1;
+                    M.m2=0;
                 }
 }
 
 void leitura(){
+    int asc;
     if (kbhit()){
         asc= getch();
         if (asc=='1'){
-            s1=1;
-            s2=0;
+            S.s1=1;
+            S.s2=0;
         }
             else if (asc == '2'){
-            s1=0;
-            s2=1;
+            S.s1=0;
+            S.s2=1;
         }
                 else if(asc == '3'){
-                    s1=s2=1;
+                    S.s1=S.s2=1;
                 }
                     else if(asc == '4'){
-                    s1=s2=0;
+                    S.s1=S.s2=0;
                 }
         }
     }
