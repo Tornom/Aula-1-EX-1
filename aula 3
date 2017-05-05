@@ -8,9 +8,9 @@ void gotoxy (int x, int y);
 
 void ini();
 
-void leitura();
+struct sensor leitura();
 
-void ia();
+struct motor ia();
 
 void movemotor();
 
@@ -31,12 +31,13 @@ void movemotor();
 /*------------------------------------------------------------------------------------*/
 int main()
 {
+    int s1,s2,m1,m2;
     ini();
   while(1){
-    leitura();
-    ia();
+    leitura(S);
+    ia(M);
     movemotor();
-    sleep(1);
+    sleep(1/2);
   }
     return 0;
 }
@@ -72,7 +73,7 @@ void movemotor(){
     }
 }
 
-void ia(){
+struct motor ia(){
     if (S.s1==0 && S.s2==0){
         M.m1=1;
         M.m2=1;
@@ -90,9 +91,11 @@ void ia(){
                     M.m1=1;
                     M.m2=0;
                 }
+           return M;
+
 }
 
-void leitura(){
+struct sensor leitura(){
     int asc;
     if (kbhit()){
         asc= getch();
@@ -111,4 +114,6 @@ void leitura(){
                     S.s1=S.s2=0;
                 }
         }
-    }
+
+        return S;
+}
